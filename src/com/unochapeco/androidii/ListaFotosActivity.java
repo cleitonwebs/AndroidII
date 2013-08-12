@@ -3,15 +3,14 @@ package com.unochapeco.androidii;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.unochapeco.androidii.adapter.ListaFotosAdapter;
-import com.unochapeco.androidii.task.ExcluiFotoTask;
-import com.unochapeco.androidii.task.ListarFotosTask;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.unochapeco.androidii.adapter.ListaFotosAdapter;
+import com.unochapeco.androidii.task.ExcluiFotoTask;
+import com.unochapeco.androidii.task.ListarFotosTask;
 
 public class ListaFotosActivity extends ListActivity {
 	
@@ -31,7 +34,7 @@ public class ListaFotosActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_fotos);
-		
+		if (verificaConexao()) {
 		this.listaFotos = new ArrayList<Fotos>();
         this.adapter = new ListaFotosAdapter(this, 
         		R.layout.layout_item_lista, listaFotos);
@@ -48,7 +51,25 @@ public class ListaFotosActivity extends ListActivity {
                 return onLongListItemClick(v,pos,id);
             }
         });
+        
+		} else {
+			Toast.makeText(getBaseContext(), "N‹o foi detectada uma conex‹o com a Internet.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Por favor ative uma conex‹o de Internet",  Toast.LENGTH_LONG).show();
+		}
  
+	}
+	
+	public boolean verificaConexao() {
+		boolean conectado;
+		ConnectivityManager conectivtyManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (conectivtyManager.getActiveNetworkInfo() != null
+				&& conectivtyManager.getActiveNetworkInfo().isAvailable()
+				&& conectivtyManager.getActiveNetworkInfo().isConnected()) {
+			conectado = true;
+		} else {
+			conectado = false;
+		}
+		return conectado;
 	}
 	
 	protected boolean onLongListItemClick(final View v, int pos, long id) {

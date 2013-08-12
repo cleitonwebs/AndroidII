@@ -13,5 +13,8 @@
     <string name="obter_camera">Obter da Câmera</string>
     <string name="obter_galeria">Obter da Galeria</string>
     <string name="selecionar_imagem">Selecionar imagem para envio:</string>
+    <string name="txt_splash">Nome do Aplicativo</string>
+    <string name="title_activity_splash">Carregando..</string>
+    
 
 </resources>
