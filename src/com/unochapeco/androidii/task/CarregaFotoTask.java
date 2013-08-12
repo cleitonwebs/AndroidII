@@ -1,4 +1,4 @@
-package com.unochapeco.androidii;
+package com.unochapeco.androidii.task;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
@@ -10,9 +10,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 
-public class LoadImagem extends AsyncTask<String, Integer, Bitmap>{
+public class CarregaFotoTask extends AsyncTask<String, Integer, Bitmap>{
 	
 	private String imageUri;
 	private ImageView imageView;
@@ -20,7 +21,7 @@ public class LoadImagem extends AsyncTask<String, Integer, Bitmap>{
     private int padraoHeight = 80;
     
     
-    public LoadImagem(String uri, ImageView imageView, int escalaWidth, int escalaHeight ){
+    public CarregaFotoTask(String uri, ImageView imageView, int escalaWidth, int escalaHeight ){
     	this.imageUri = uri;
     	this.imageView = imageView;
     	this.padraoWidth = escalaWidth;
@@ -51,7 +52,7 @@ public class LoadImagem extends AsyncTask<String, Integer, Bitmap>{
 	            return bitmap;
 	        }
 		}catch (Exception e) {
-			e.printStackTrace();
+			Log.v("CarregaFotoTask", "Falha na conex‹o "+e.toString());
 		}
 		return null;
 	}

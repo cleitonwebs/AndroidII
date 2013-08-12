@@ -39,9 +39,10 @@
         android:id="@+id/imageViewEnvia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_launcher" />
+        android:layout_above="@+id/tableLayout1"
+        android:layout_alignLeft="@+id/tableLayout1"
+        android:layout_alignRight="@+id/tableLayout1"
+        android:layout_below="@+id/relativeLayout1" />
 
     <TextView
         android:id="@+id/textView1"
@@ -74,9 +75,10 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/btnCamera"
             android:text="@string/obter_galeria" />
+
     </RelativeLayout>
 
 </RelativeLayout>

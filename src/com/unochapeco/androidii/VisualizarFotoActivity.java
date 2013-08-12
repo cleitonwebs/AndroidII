@@ -1,5 +1,7 @@
 package com.unochapeco.androidii;
 
+import com.unochapeco.androidii.task.CarregaFotoTask;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,7 +11,7 @@ import android.widget.ImageView;
 public class VisualizarFotoActivity extends Activity {
 	
 	private ImageView imgFoto;
-	private LoadImagem loadImagem;
+	private CarregaFotoTask carregaFoto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +23,8 @@ public class VisualizarFotoActivity extends Activity {
 		
 		imgFoto = (ImageView) findViewById(R.id.imgFoto);
 		
-		this.loadImagem = new LoadImagem( imagemFoto.toString(), imgFoto, 400, 500 );
-		this.loadImagem.execute();
+		this.carregaFoto = new CarregaFotoTask( imagemFoto.toString(), imgFoto, 400, 500 );
+		this.carregaFoto.execute();
 		
 	}
 

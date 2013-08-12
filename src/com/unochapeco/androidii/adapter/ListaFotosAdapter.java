@@ -3,8 +3,9 @@ package com.unochapeco.androidii.adapter;
 
 import java.util.List;
 import com.unochapeco.androidii.Fotos;
-import com.unochapeco.androidii.LoadImagem;
 import com.unochapeco.androidii.R;
+import com.unochapeco.androidii.task.CarregaFotoTask;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ public class ListaFotosAdapter extends ArrayAdapter<Fotos>{
 	private Context context;
 	private int layout;
 	private List<Fotos> listaFotos;
-	private LoadImagem loadImagem;
+	private CarregaFotoTask carregaFoto;
 	
 	public ListaFotosAdapter(Context context, int textViewResourceId,
 			List<Fotos> objects) {
@@ -48,10 +49,8 @@ public class ListaFotosAdapter extends ArrayAdapter<Fotos>{
 		
 		ImageView image = (ImageView) item.findViewById(R.id.imageThumb);
 		
-		//new loadImagem( fotos.getImage(), image, 100, 100 ).execute();
-		
-		this.loadImagem = new LoadImagem(fotos.getImage(), image, 100, 100 );
-		this.loadImagem.execute();
+		this.carregaFoto = new CarregaFotoTask(fotos.getImage(), image, 60, 60 );
+		this.carregaFoto.execute();
 		
 		return item;
 	}

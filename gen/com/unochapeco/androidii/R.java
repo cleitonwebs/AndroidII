@@ -32,10 +32,10 @@ public final class R {
         public static final int imageThumb=0x7f08000a;
         public static final int imageViewEnvia=0x7f080003;
         public static final int imgFoto=0x7f080008;
-        public static final int relativeLayout1=0x7f080005;
+        public static final int relativeLayout1=0x7f080004;
         public static final int tableLayout1=0x7f080000;
         public static final int textNameImage=0x7f080009;
-        public static final int textView1=0x7f080004;
+        public static final int textView1=0x7f080005;
     }
     public static final class layout {
         public static final int activity_envia_imagem=0x7f030000;

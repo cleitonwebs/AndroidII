@@ -15,6 +15,7 @@ import com.unochapeco.androidii.Fotos;
 import com.unochapeco.androidii.ListaFotosActivity;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class ListarFotosTask extends AsyncTask<Void, Void, Void> {
 	
@@ -52,7 +53,7 @@ public class ListarFotosTask extends AsyncTask<Void, Void, Void> {
 			this.publishProgress();
 			
 		}catch (Exception e) {
-			e.printStackTrace();
+			Log.v("ListarFotosTask", "Falha na conex‹o "+e.toString());
 		}
 		
 		return null;

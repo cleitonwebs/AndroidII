@@ -1,10 +1,8 @@
 package com.unochapeco.androidii;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -116,32 +114,28 @@ public class EnviaImagemActivity extends Activity {
 		@SuppressWarnings("unused")
 		@Override
 		protected String doInBackground(Void... unsued) {
-				InputStream is;
-			    BitmapFactory.Options bfo;
-			    Bitmap bitmapOrg;
-			    ByteArrayOutputStream bao ;
+
+			    BitmapFactory.Options bitmapfo;
+			    ByteArrayOutputStream byteArray;
 			   
-			    bfo = new BitmapFactory.Options();
-			    bfo.inSampleSize = 2;
+			    bitmapfo = new BitmapFactory.Options();
+			    bitmapfo.inSampleSize = 2;
 			      
-			    bao = new ByteArrayOutputStream();
-			    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, bao);
-				byte [] ba = bao.toByteArray();
-				String ba1 = Base64.encodeBytes(ba);
+			    byteArray = new ByteArrayOutputStream();
+			    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArray);
+				byte [] bytes = byteArray.toByteArray();
+				String base64 = Base64.encodeBytes(bytes);
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-				nameValuePairs.add(new BasicNameValuePair("image",ba1));
-				nameValuePairs.add(new BasicNameValuePair("cmd","image_android"));
+				nameValuePairs.add(new BasicNameValuePair("image",base64));
 	       
 				try{
 				        HttpClient httpclient = new DefaultHttpClient();
 				        HttpPost httppost = new HttpPost("http://www.grupoinmove.com.br/webservice/upload/index.php");
 				        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 				        HttpResponse response = httpclient.execute(httppost);
-				        HttpEntity entity = response.getEntity();
-				        is = entity.getContent();
 
 				   }catch(Exception e){
-				        Log.v("log_tag", "Falha na conex‹o "+e.toString());
+				        Log.v("EnviaImageActivity", "Falha na conex‹o "+e.toString());
 				   }
 			return "Successo";
 		}
@@ -156,7 +150,7 @@ public class EnviaImagemActivity extends Activity {
 			try {
 				if (dialog.isShowing())dialog.dismiss();
 									
-					runOnPostExecute();
+				setaImageView();
 					
 			} catch (Exception e) {
 				Toast.makeText(getApplicationContext(),
@@ -167,7 +161,7 @@ public class EnviaImagemActivity extends Activity {
 		}
 	}
 	
-	public void runOnPostExecute(){
+	public void setaImageView(){
 		new AlertDialog.Builder(this)
         .setIcon(android.R.drawable.ic_dialog_alert)
         .setTitle("Sua imagem foi enviada!")
@@ -252,8 +246,8 @@ public class EnviaImagemActivity extends Activity {
 	}
 	
 	public String getPath(Uri uri) {
-		String[] projection = { MediaStore.Images.Media.DATA };
-		Cursor cursor = managedQuery(uri, projection, null, null, null);
+		String[] proj = { MediaStore.Images.Media.DATA };
+		Cursor cursor = getContentResolver().query(uri, proj, null, null, null);
 		if (cursor != null) {
 			int column_index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
@@ -266,25 +260,25 @@ public class EnviaImagemActivity extends Activity {
 	
 	public void decodeFile(String filePath) {
 
-		BitmapFactory.Options o = new BitmapFactory.Options();
-		o.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(filePath, o);
+		BitmapFactory.Options bitmapfo = new BitmapFactory.Options();
+		bitmapfo.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(filePath, bitmapfo);
 
-		final int REQUIRED_SIZE = 1024;
+		final int TAMANHO = 1024;
 
-		int width_tmp = o.outWidth, height_tmp = o.outHeight;
+		int width_tmp = bitmapfo.outWidth, height_tmp = bitmapfo.outHeight;
 		int scale = 1;
 		while (true) {
-			if (width_tmp < REQUIRED_SIZE && height_tmp < REQUIRED_SIZE)
+			if (width_tmp < TAMANHO && height_tmp < TAMANHO)
 				break;
 			width_tmp /= 2;
 			height_tmp /= 2;
 			scale *= 2;
 		}
 
-		BitmapFactory.Options o2 = new BitmapFactory.Options();
-		o2.inSampleSize = scale;
-		bitmap = BitmapFactory.decodeFile(filePath, o2);
+		BitmapFactory.Options bitmapfo2 = new BitmapFactory.Options();
+		bitmapfo2.inSampleSize = scale;
+		bitmap = BitmapFactory.decodeFile(filePath, bitmapfo2);
 
 		imageView.setImageBitmap(bitmap);
 	}
