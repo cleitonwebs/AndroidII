@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AndroidII</string>
+    <string name="app_name">iFoto</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_visualizar_foto">VisualizarFotoActivity</string>
-    <string name="title_activity_envia_imagem">EnviaImagemActivity</string>
+    <string name="title_activity_visualizar_foto">Visualizar Foto</string>
+    <string name="title_activity_envia_imagem">Enviar Imagem</string>
     <string name="imagem">Imagem</string>
     <string name="camera">Câmera</string>
     <string name="galeria">Galeria</string>
@@ -13,7 +13,7 @@
     <string name="obter_camera">Obter da Câmera</string>
     <string name="obter_galeria">Obter da Galeria</string>
     <string name="selecionar_imagem">Selecionar imagem para envio:</string>
-    <string name="txt_splash">Nome do Aplicativo</string>
+    <string name="txt_splash">iFoto</string>
     <string name="title_activity_splash">Carregando..</string>
     
 

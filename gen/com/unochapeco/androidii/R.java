@@ -28,7 +28,7 @@ public final class R {
         public static final int btnCancelar=0x7f080002;
         public static final int btnEnviar=0x7f080001;
         public static final int btnGaleria=0x7f080007;
-        public static final int enviarImagem=0x7f08000b;
+        public static final int enviarImagem=0x7f08000c;
         public static final int imageThumb=0x7f08000a;
         public static final int imageViewEnvia=0x7f080003;
         public static final int imgFoto=0x7f080008;
@@ -36,12 +36,14 @@ public final class R {
         public static final int tableLayout1=0x7f080000;
         public static final int textNameImage=0x7f080009;
         public static final int textView1=0x7f080005;
+        public static final int txNomeFoto=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_envia_imagem=0x7f030000;
         public static final int activity_lista_fotos=0x7f030001;
         public static final int activity_visualizar_foto=0x7f030002;
         public static final int layout_item_lista=0x7f030003;
+        public static final int splash=0x7f030004;
     }
     public static final class menu {
         public static final int lista_fotos=0x7f070000;
@@ -58,7 +60,9 @@ public final class R {
         public static final int obter_galeria=0x7f05000a;
         public static final int selecionar_imagem=0x7f05000b;
         public static final int title_activity_envia_imagem=0x7f050004;
+        public static final int title_activity_splash=0x7f05000d;
         public static final int title_activity_visualizar_foto=0x7f050003;
+        public static final int txt_splash=0x7f05000c;
     }
     public static final class style {
         /** 
